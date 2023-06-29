@@ -49,8 +49,8 @@ class Comuna(models.Model):
     id_region = models.ForeignKey(Region, on_delete= models.CASCADE, verbose_name= 'Id Region')
 
 
-class direccion(models.Model):
-    id_direccion = models.ImageField(primary_key=True, verbose_name= 'Id direccion')
+class Direccion(models.Model):
+    id_direccion = models.IntegerField(primary_key=True, verbose_name= 'Id direccion')
     direccion = models.CharField(max_length= 255, verbose_name= 'Direccion')
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name= 'Rut Usuario del Carrito')
     id_comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name= 'Id comuna')
