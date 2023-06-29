@@ -1,0 +1,76 @@
+.items-carro{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+#items{
+    flex: 1 0 60%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    justify-items: center;
+    grid-gap: 1.5rem;
+    padding: 20px;
+}
+.lista-carro{
+    flex: 1 0 30%;
+}
+.producto {
+    background-color: #fffdd0;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; 
+    height: auto; 
+    border: solid 3px #502b1b;
+    box-shadow: 0 0 10px rgba(80, 43, 27, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        5px 0 15px rgba(0, 0, 0, 0.2),
+        -5px 0 15px rgba(0, 0, 0, 0.2),
+        0 -5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-out;
+}
+.producto:hover{
+    transform: scale(1.1);
+}
+.producto img{
+    width: 100%; 
+    height: auto;
+}
+
+@media screen and (max-width: 600px) {
+    #items {
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+}
+
+.agregar{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+.titulo, .precio{
+    margin: 0;
+    color: #502b1b;
+}
+
+.btn-agregar {
+    border: solid 2px #fffdd0;
+    color: #fffdd0;
+    background-color: #502b1b;
+    padding: 7px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+
+}
+
+.btn-agregar:hover{
+    color: #502b1b;
+    background-color: #fffdd0;
+}
