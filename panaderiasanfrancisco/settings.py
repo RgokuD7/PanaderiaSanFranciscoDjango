@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-LOGIN_REDIRECT_URL = 'menu'
+LOGIN_REDIRECT_URL = 'usuario'
 LOGOUT_REDIRECT_URL = 'login'
 
 ROOT_URLCONF = 'panaderiasanfrancisco.urls'

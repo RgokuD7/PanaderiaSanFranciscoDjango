@@ -25,16 +25,17 @@
           <li class="dropdownn">
             <a href="#">Cuenta</a>
             <ul class="dropdownn-menu">
-              <li><a href="{% url 'home' %}">Informacion</a></li>
+              <li><a href="{% url 'usuario' %}">Informacion</a></li>
               <li><a href="{% url 'logout' %}">Cerrar Sesíon</a></li>
             </ul>
           </li>
           <li class="dropdownn">
-            <a href="#">Productos</a>
+            <a href="#">Administrar</a>
             <ul class="dropdownn-menu">
-              <li><a href="{% url 'pan' %}">Pan</a></li>
-              <li><a href="{% url 'empanadas' %}">Empanadas</a></li>
-              <li><a href="{% url 'reposteria' %}">Reposteria</a></li>
+              <li><a href="{% url 'poductos' %}">Productos</a></li>
+              <li><a href="{% url 'tpproductos' %}">Tipo Producto</a></li>
+              <li><a href="{% url 'region' %}">Región</a></li>
+              <li><a href="{% url 'comuna' %}">Comuna</a></li>
             </ul>
           </li>
         </ul>
