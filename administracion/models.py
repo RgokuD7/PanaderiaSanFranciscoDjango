@@ -1,15 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Imagen(models.Model):
-    id_img = models.AutoField(primary_key=True, verbose_name='Id de la Imagen')
-    nombre_img = models.CharField(max_length= 50, verbose_name= 'Nombre de la Imagen') 
-    imagen = models.ImageField(upload_to='static/adminstracion/img/productos/')
-
-    def __str__(self):
-        return self.imagen
-
-class tipoProducto(models.Model):
+class TipoProducto(models.Model):
     id_tipoProducto = models.AutoField(primary_key=True, verbose_name='Id de Tipo Producto')
     tipo_producto = models.CharField(max_length=50, verbose_name='Tipo de Producto')
 
@@ -20,8 +12,8 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100 ,verbose_name= 'Nombre del Producto')
     descripcion = models.TextField(verbose_name='Descripcion del Producto')
     precio = models.IntegerField(verbose_name='Precio del Producto')
-    tipo_producto = models.ForeignKey(tipoProducto, on_delete= models.SET_NULL, null= True, verbose_name='Tipo de Producto')
-    img = models.ForeignKey(Imagen, on_delete= models.SET_NULL, null= True, verbose_name='Nombre de la Imagen del Producto')
+    tipo_producto = models.ForeignKey(TipoProducto, on_delete= models.SET_NULL, null= True, verbose_name='Tipo de Producto')
+    imagen = models.ImageField(upload_to='static/adminstracion/img/productos/', verbose_name= 'Imagen del Producto')
     ingredientes = models.TextField(verbose_name='Ingredientes del Producto')
     stock = models.IntegerField(verbose_name='Stock del Producto')
 
