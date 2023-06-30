@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import *
+from administracion.models import *
 import json
 # Create your views here.
 

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .models import *
 
 # Create your views here.
 
@@ -9,7 +10,8 @@ def usuario(request):
 
 @login_required
 def productos(request):
-    return render(request, 'administracion/productos.html')
+    productos = Producto.objects.all()
+    return render(request, 'administracion/productos.html', {'productos': productos})
 
 @login_required
 def tpproductos(request):
