@@ -1,7 +1,12 @@
-
+html{
+    height: 100%;
+}
 body {
     --bs-body-bg: #fffdd0;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .buscar {
@@ -48,13 +53,14 @@ body {
     height: 60%;
 }
 
-.question{
+.question {
     display: flex;
     flex-direction: column;
     margin: 100px 20%;
 
 
 }
+
 /*
 #502b1b
 #fffdd0

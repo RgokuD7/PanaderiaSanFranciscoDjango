@@ -13,7 +13,7 @@ class Producto(models.Model):
     descripcion = models.TextField(verbose_name='Descripcion del Producto')
     precio = models.IntegerField(verbose_name='Precio del Producto')
     tipo_producto = models.ForeignKey(TipoProducto, on_delete= models.SET_NULL, null= True, verbose_name='Tipo de Producto')
-    imagen = models.ImageField(upload_to='static/adminstracion/img/productos/', verbose_name= 'Imagen del Producto')
+    imagen = models.ImageField(upload_to= 'static/adminstracion/img/productos/', default='static/core/img/logo.jpg', verbose_name= 'Imagen del Producto')
     ingredientes = models.TextField(verbose_name='Ingredientes del Producto')
     stock = models.IntegerField(verbose_name='Stock del Producto')
 

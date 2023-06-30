@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Panderia San Francisco </title>
   {% load static %}
+  <link rel="stylesheet" href="{% static 'administracion/css/tablas.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/nosotros.css' %}">
@@ -42,6 +43,43 @@
       </div>
     </nav>
   </header>
+  <main>
+    <div class="titulo">
+        <h1>Lista de Productos</h1>
+        <button class="btn-agregar" onclick="window.location.href='add_producto'">Agregar Producto</button>
+    </div>
+    <table>
+        <thead>
+          <tr>
+            <th>Nombre del Producto</th>
+            <th>Precio</th>
+            <th>Tipo de Producto</th>
+            <th>Imagen</th>
+            <th>Stock</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for producto in productos %}
+          <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.tipo_producto }}</td>
+            <td><img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}"></td>
+            <td>{{ producto.stock }}</td>
+            <td>
+                <button>Editar</butto>
+                <button>Eliminar</button>
+            </td>
+          </tr>
+          {% empty %}
+            <tr>
+                <td colspan="6">No hay Productos disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+  </main>
   <footer>
     <div class="pie">
       <div class="left">
