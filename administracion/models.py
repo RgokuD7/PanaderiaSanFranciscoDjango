@@ -13,7 +13,7 @@ class Producto(models.Model):
     descripcion = models.TextField(verbose_name='Descripcion del Producto')
     precio = models.IntegerField(verbose_name='Precio del Producto')
     tipo_producto = models.ForeignKey(TipoProducto, on_delete= models.SET_NULL, null= True, verbose_name='Tipo de Producto')
-    imagen = models.ImageField(upload_to= 'static/adminstracion/img/productos/', default='static/core/img/logo.jpg', verbose_name= 'Imagen del Producto')
+    imagen = models.ImageField(upload_to= 'img/productos', default='static/core/img/logo.jpg', verbose_name= 'Imagen del Producto')
     ingredientes = models.TextField(verbose_name='Ingredientes del Producto')
     stock = models.IntegerField(verbose_name='Stock del Producto')
 
@@ -49,16 +49,16 @@ class ItemCarrito(models.Model):
         return self.carrito
 
 class Region(models.Model):
-    id_region = models.IntegerField(primary_key= True, verbose_name= 'Id Region')
+    id_region = models.AutoField(primary_key= True, verbose_name= 'Id Region')
     region = models.CharField(max_length=255, verbose_name= 'Region')
 
     def __str__(self):
         return self.region
 
 class Comuna(models.Model):
-    id_comuna = models.IntegerField(primary_key= True, verbose_name= 'Id Comuna')
+    id_comuna = models.AutoField(primary_key= True, verbose_name= 'Id Comuna')
     comuna = models.CharField(max_length= 255, verbose_name= 'Comuna')
-    id_region = models.ForeignKey(Region, on_delete= models.CASCADE, verbose_name= 'Id Region')
+    id_region = models.ForeignKey(Region, on_delete= models.CASCADE, verbose_name= 'Region')
 
     def __str__(self):
         return self.comuna
@@ -68,7 +68,7 @@ class Direccion(models.Model):
     id_direccion = models.IntegerField(primary_key=True, verbose_name= 'Id direccion')
     direccion = models.CharField(max_length= 255, verbose_name= 'Direccion')
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name= 'Rut Usuario del Carrito')
-    id_comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name= 'Id comuna')
+    id_comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name= 'Comuna')
 
     def __str__(self):
         return self.direccion
