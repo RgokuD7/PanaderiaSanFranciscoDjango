@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.hashers import check_password
 # Create your models here.
 class TipoProducto(models.Model):
     id_tipoProducto = models.AutoField(primary_key=True, verbose_name='Id de Tipo Producto')
@@ -21,13 +21,13 @@ class Producto(models.Model):
         return self.nombre
     
 class Usuario(models.Model):
-    rut = models.CharField(primary_key= True, max_length= 10, verbose_name= 'Rut Usuario')
-    nombres = models.CharField(max_length= 50, verbose_name= 'Nombres Usuario')
-    apellidos = models.CharField(max_length= 50, verbose_name= 'Apellidos Usuario')
-    fec_nac = models.DateField(verbose_name= 'Fecha Nacimiento Usuario')
-    telefono = models.IntegerField(verbose_name= 'Telefono Usuario')
-    mail = models.EmailField(verbose_name= 'Email Usuario')
-    password = models.CharField(max_length= 15, verbose_name= 'Password Usuario')
+    rut = models.CharField(primary_key= True, max_length= 10, verbose_name= 'Rut')
+    nombres = models.CharField(max_length= 50, verbose_name= 'Nombres')
+    apellidos = models.CharField(max_length= 50, verbose_name= 'Apellidos')
+    fec_nac = models.DateTimeField(verbose_name= 'Fecha Nacimiento')
+    telefono = models.IntegerField(verbose_name= 'Telefono')
+    mail = models.EmailField(verbose_name= 'Email')
+    password = models.CharField(max_length= 15, verbose_name= 'Password')
 
     def __str__(self):
         return self.rut
