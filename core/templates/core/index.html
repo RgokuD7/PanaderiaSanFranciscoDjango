@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Panderia San Francisco </title>
   {% load static %}
+  <link rel="stylesheet" href="{% static 'administracion/css/tablas.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
   <link rel="stylesheet" href="{% static 'core/css/nosotros.css' %}">
@@ -20,6 +21,8 @@
     <nav>
       <div class="top">
         <img class="logo" src="{% static 'core/img/logo_estrecho.jpg' %}" alt="LOGO">
+        <button class="boton" onclick="window.location.href='login_user'">Iniciar Sesión</butto>
+          <button class="boton" onclick="window.location.href='registrar'">Registrarse</button>
       </div>
       <div class="bottom">
         <ul class="menu">

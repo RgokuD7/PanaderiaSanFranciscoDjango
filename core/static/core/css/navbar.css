@@ -1,5 +1,7 @@
 .top {
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     background-color: #fffdd0;
     justify-content: center;
 }
