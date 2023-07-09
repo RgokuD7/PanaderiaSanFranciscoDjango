@@ -12,34 +12,29 @@ class TipoProductoForm(forms.ModelForm):
         model = TipoProducto
         fields = ['tipo_producto']
 
-
 class UsuarioForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['rut', 'nombres', 'apellidos', 'fec_nac', 'telefono', 'mail', 'password']
-    
+        fields = '__all__'
+        
         widgets = {
             'fec_nac': forms.DateInput(attrs={'type': 'date'}),
-            'password': forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
-        }
+        }  # Incluir todos los campos del modelo
 
+class DireccionForm(forms.ModelForm):
+    class Meta:
+        model = Direccion
+        fields = ['direccion']
+        
 class RegionForm(forms.ModelForm):
     class Meta:
         model = Region
         fields = ['region']
-
 class ComunaForm(forms.ModelForm):
     class Meta:
         model = Comuna
         fields = ['comuna', 'id_region']
 
-class DireccionForm(forms.ModelForm):
-    class Meta:
-        model = Direccion
-        fields = ['direccion', 'usuario', 'id_comuna']
-
-from django import forms
-from .models import Usuario
 
 class LoginForm(forms.Form):
     rut = forms.CharField(label="RUT")

@@ -6,10 +6,10 @@
 #items{
     flex: 1 0 60%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    justify-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(5rem, 10rem));
+    justify-items: flex-start;
     grid-gap: 1.5rem;
-    padding: 20px;
+    padding: 30px;
 }
 .lista-carro{
     flex: 1 0 30%;
@@ -73,4 +73,21 @@
 .btn-agregar:hover{
     color: #502b1b;
     background-color: #fffdd0;
+}
+
+.btn-agregar-falso{
+    border: solid 2px red;
+    color: red;
+    background-color: #fffdd0;
+    padding: 7px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.btn-agregar-falso:hover{
+    color: #fffdd0;
+    background-color: red;
 }

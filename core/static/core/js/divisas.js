@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
   const miLocalStorage = window.localStorage;
   function cargarDivisa() {
@@ -26,4 +27,5 @@ $(document).ready(function () {
     }
   );
 });
+
 

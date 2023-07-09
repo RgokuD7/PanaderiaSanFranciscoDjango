@@ -26,6 +26,7 @@
     margin: 5px;
 }
 .item-carrito p{
+    color: #000000;
     margin: 0;
     width: 70%;
     height: auto;
@@ -53,6 +54,7 @@
     justify-content: space-between;
 }
 .total-carro p {
+    color: #502b1b;
     margin: 0;
 }
 #boton-vaciar{
@@ -70,4 +72,16 @@
 #boton-vaciar:hover{
     color: red;
     background-color: #fffdd0;
+}
+
+.cantidad{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.cantidad  p{
+    width: 1.5rem;
+    text-align: center;
 }

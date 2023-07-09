@@ -67,7 +67,7 @@ class Comuna(models.Model):
 class Direccion(models.Model):
     id_direccion = models.IntegerField(primary_key=True, verbose_name= 'Id direccion')
     direccion = models.CharField(max_length= 255, verbose_name= 'Direccion')
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name= 'Rut Usuario del Carrito')
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, verbose_name= 'Rut Usuario')
     id_comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, verbose_name= 'Comuna')
 
     def __str__(self):

@@ -8,7 +8,8 @@ urlpatterns = [
     path('carrito/', carrito, name='carrito'),
     path('contacto', contacto, name='contacto'),
     path('preguntas/', preguntas, name='preguntas'),
-    path('registrar/', registrar, name='registrar'),
+    path('registrar/', registro_usuario, name='registrar'),
+    path('obtener_comunas/', obtener_comunas, name='obtener_comunas'),
     path('login_user', login_user, name='login_user'),
-    path('agregar_al_carrito/', agregar_al_carrito, name='agregar_al_carrito'),
+    path('modificar_carrito/', modificar_carrito, name='modificar_carrito'),
 ]
