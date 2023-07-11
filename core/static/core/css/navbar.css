@@ -73,13 +73,13 @@ nav {
 nav .dropdownn:hover .dropdownn-menu {
     display: flex;
     flex-direction: row;
-    align-items: start;
+    align-items: center;
 }
 
 nav .dropdownn:hover .dropdownn-user {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
 }
 
 nav ul, .usuario ul {
