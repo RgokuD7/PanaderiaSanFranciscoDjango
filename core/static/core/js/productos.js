@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 function renderProductos() {
   if (productos.length == 0) {
-    $("#items").html("<h1>No hay productos disponibles.</h1>");
+    $("#items").html("<h1 class='titulos'>No hay productos disponibles.</h1>");
   } else {
     $("#items").html("");
   }

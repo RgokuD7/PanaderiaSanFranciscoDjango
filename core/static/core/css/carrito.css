@@ -4,6 +4,7 @@
     list-style-type: circle;
     padding: 0;
     margin: 0;
+    color: #502b1b;
 }
 
 .item-carrito{
@@ -26,7 +27,7 @@
     margin: 5px;
 }
 .item-carrito p{
-    color: #000000;
+    color: #502b1b;
     margin: 0;
     width: 70%;
     height: auto;
@@ -51,7 +52,7 @@
 .total-carro{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
 }
 .total-carro p {
     color: #502b1b;

@@ -47,7 +47,6 @@ nav {
         5px 0 15px rgba(0, 0, 0, 0.2),
         -5px 0 15px rgba(0, 0, 0, 0.2),
         0 -5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-out;
 
 }
 
@@ -68,7 +67,7 @@ nav {
         5px 0 15px rgba(0, 0, 0, 0.2),
         -5px 0 15px rgba(0, 0, 0, 0.2),
         0 -5px 15px rgba(0, 0, 0, 0.2);
-    
+
 }
 
 nav .dropdownn:hover .dropdownn-menu {
@@ -83,20 +82,20 @@ nav .dropdownn:hover .dropdownn-user {
     align-items: start;
 }
 
-nav ul {
+nav ul, .usuario ul {
     list-style: none;
     margin: 0;
     padding: 0;
 
 }
 
-nav li {
+nav li, .usaurio li {
     display: inline-block;
     position: relative;
 }
 
 nav li>a,
-.usuario a {
+.usuario li>a, .usuario a {
     display: block;
     padding: 10px;
     text-decoration: none;
@@ -110,7 +109,7 @@ nav li>a:hover,
 }
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 
     nav {
         flex-direction: column-reverse;
@@ -119,7 +118,7 @@ nav li>a:hover,
         align-content: center;
     }
 
-    .menu {
+    .menu, .usuario {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -131,17 +130,17 @@ nav li>a:hover,
         padding: 0;
     }
 
-    nav .dropdownn-menu {
+    .dropdownn-menu, .dropdownn-user {
         display: none;
+        box-shadow: none;
     }
 
-    nav .dropdownn:hover .dropdownn-menu {
+    nav .dropdownn:hover .dropdownn-menu, .dropdownn:hover .dropdownn-user {
         display: flex;
         position: static;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 0;
-
     }
 }

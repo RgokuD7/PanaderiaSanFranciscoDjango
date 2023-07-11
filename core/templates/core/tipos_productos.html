@@ -9,14 +9,18 @@
 <script>
   var productos = JSON.parse('{{ productos|safe }}');
 </script>
+<div class="titulo-divisa">
+  <h1 class="titulos">{{ tipo_producto }}</h1>
+  <select class="divisas" id="divisa"></select>
+</div>
 <div class="items-carro">
   <div id="items"></div>
   <div class="lista-carro">
-    <h2 class="titulo">Carrito</h2>
+    <h2 class="titulos">Carrito</h2>
     <ul id="carrito"></ul>
     <!-- Precio total -->
     <div class="total-carro">
-      <p>Total: <span id="total"></span> <span id="div"></span></p>
+      <p id="total"></p>
       <button id="boton-vaciar" onclick="anyadirProductoAlCarrito(0, 'empty')">Vaciar</button>
     </div>
   </div>

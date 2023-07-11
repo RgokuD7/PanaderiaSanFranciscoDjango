@@ -12,9 +12,11 @@ def home(request):
 
 def tipos_productos(request, id_tpproducto):
     productos = Producto.objects.filter(tipo_producto=id_tpproducto)
-    productosJson = [{'producto_id': producto.id_producto, 'nombre': producto.nombre, 'precio': producto.precio, 'img': producto.imagen.url } for producto in productos]
+    tipo_producto = TipoProducto.objects.get(id_tipoProducto=id_tpproducto).tipo_producto
+    print(tipo_producto)
+    productosJson = [{'producto_id': producto.id_producto, 'nombre': producto.nombre, 'precio': producto.precio, 'img': producto.imagen.url} for producto in productos]
     productosJson = json.dumps(productosJson)
-    return render(request, 'core/tipos_productos.html', {'productos': productosJson})
+    return render(request, 'core/tipos_productos.html', {'productos': productosJson, 'tipo_producto': tipo_producto })
 
 
 def carrito(request):
