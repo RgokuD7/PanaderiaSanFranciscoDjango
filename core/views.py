@@ -3,37 +3,22 @@ from administracion.models import *
 from administracion.forms import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 def home(request):
     return render(request, 'core/index.html')
 
-def pan(request):
-    rut_usuario = request.session.get('rut')  # Obtiene el "rut" guardado en la sesión
-    elementos_carrito = []
 
-    if rut_usuario:
-        try:
-            usuario = Usuario.objects.get(rut=rut_usuario)
-            carrito = Carrito.objects.get(usuario=usuario)
-            elementos_carrito = carrito.itemcarrito_set.all()
-        except (Usuario.DoesNotExist, Carrito.DoesNotExist):
-            pass  # El usuario con ese "rut" no existe, o no tiene carrito aún
+def tipos_productos(request, id_tpproducto):
+    productos = Producto.objects.filter(tipo_producto=id_tpproducto)
+    productosJson = [{'producto_id': producto.id_producto, 'nombre': producto.nombre, 'precio': producto.precio, 'img': producto.imagen.url } for producto in productos]
+    productosJson = json.dumps(productosJson)
+    return render(request, 'core/tipos_productos.html', {'productos': productosJson})
 
-    productos = Producto.objects.all()
-    return render(request, 'core/pan.html', {'productos': productos, 'elementos_carrito': elementos_carrito})
-
-def empanadas(request):
-    productos = Producto.objects.all()
-    return render(request, 'core/empanadas.html', {'productos': productos})
-
-def reposteria(request):
-    productos = Producto.objects.all()
-    return render(request, 'core/reposteria.html', {'productos': productos})
 
 def carrito(request):
-    productos = Producto.objects.all()
-    return render(request, 'core/carrito.html', {'productos': productos})
+    return render(request, 'core/carrito.html')
 
 def contacto(request):
     return render(request, 'core/contacto.html')
@@ -42,8 +27,7 @@ def preguntas(request):
     return render(request, 'core/preguntas.html')
 
 def registro_usuario(request):
-    regiones = Region.objects.all()
-    comunas = Comuna.objects.none()  # Comunas vacías por defecto
+    regiones = Region.objects.all() # Comunas vacías por defecto
 
     if request.method == 'POST':
         usuario_form = UsuarioForm(request.POST)
@@ -54,6 +38,7 @@ def registro_usuario(request):
             direccion = direccion_form.save(commit=False)
             direccion.usuario = usuario
             direccion.save()
+            return redirect('login_user')
             # Resto del código de redirección o respuesta
 
     else:
@@ -64,7 +49,6 @@ def registro_usuario(request):
         'usuario_form': usuario_form,
         'direccion_form': direccion_form,
         'regiones': regiones,
-        'comunas': comunas,
     }
     return render(request, 'core/registrar.html', context)
 
@@ -103,25 +87,25 @@ def login_user(request):
 
     return render(request, 'core/login_user.html', {'form': form})
 
+def logout_user(request):
+    del request.session['rut']
+    return redirect('login_user')
 
 def modificar_carrito(request):
-    if request.method == 'POST':
-        usuario_rut = request.POST.get('usuario_rut')
-        producto_id = request.POST.get('producto_id')
-        op = request.POST.get('op')
-
-        try:
-            usuario = Usuario.objects.get(rut=usuario_rut)
-            # Obtener el carrito del usuario
-            carrito, created = Carrito.objects.get_or_create(usuario=usuario)
-            if op == 'empty':
-                print(producto_id, op, )
-                carrito.delete()
-                carrito.save()
-                return JsonResponse({'success': True, 'message': 'Carrito modificado correctamente.'})
-
+    usuario_rut = request.session.get('rut')
+    producto_id = request.GET.get('id_producto')
+    op = request.GET.get('op')
+    try:
+        usuario = Usuario.objects.get(rut=usuario_rut)
+        # Obtener el carrito del usuario
+        carrito, created = Carrito.objects.get_or_create(usuario=usuario)
+        if op == 'render':
+            pass
+        elif op == 'empty':
+            carrito.delete()
+            carrito.save()
+        else:
             producto = Producto.objects.get(id_producto=producto_id)
-
             # Obtener el item correspondiente al producto en el carrito
             item, created = ItemCarrito.objects.get_or_create(carrito=carrito, producto=producto)
 
@@ -141,15 +125,20 @@ def modificar_carrito(request):
             elif op == 'del':
                 # Eliminar el producto completo del carrito
                 item.delete()
-            carrito.save()
 
-            # Devolver una respuesta JSON indicando que se modificó correctamente
-            return JsonResponse({'success': True, 'message': 'Carrito modificado correctamente.'})
-        except Usuario.DoesNotExist:
-            return JsonResponse({'success': False, 'message': 'El usuario no existe.'})
-        except Producto.DoesNotExist:
-            return JsonResponse({'success': False, 'message': 'El producto no existe.'})
-        except Exception as e:
-            return JsonResponse({'success': False, 'message': 'Error al modificar el carrito.', 'xd': str(e)})
-    else:
-        return JsonResponse({'success': False, 'message': 'Método no permitido.'})
+        
+        carrito.save()
+        elementos_carrito = carrito.itemcarrito_set.all()
+        items = [{'id_producto': item.producto.id_producto, 'nombre': item.producto.nombre, 'precio': item.producto.precio, 'cantidad': item.cantidad} for item in elementos_carrito]
+        items = sorted(items, key=lambda item: item['nombre'])
+        return JsonResponse(items, safe= False)
+    except Usuario.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'El usuario no existe.'})
+    except Producto.DoesNotExist:
+        return JsonResponse({'success': False, 'message': 'El producto no existe.'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': 'Error al modificar el carrito.', 'xd': str(e)})
+
+
+
+

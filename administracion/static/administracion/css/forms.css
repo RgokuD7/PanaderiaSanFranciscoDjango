@@ -18,7 +18,7 @@ form {
   }
   
   /* Estilo para los campos de entrada */
-  form input[type="text"],
+  form input[type="text"], [type='date'], [type='number'], [type='email'], [type='password'],
   form textarea,
   form select {
     width: 100%;
@@ -42,7 +42,7 @@ form {
     cursor: pointer;
   }
 
-  form button[type="submit"] {
+  form button[type="submit"]:hover {
     color: #fffdd0;
     background-color: #502b1b;
   }

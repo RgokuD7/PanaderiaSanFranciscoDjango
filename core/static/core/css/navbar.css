@@ -1,7 +1,6 @@
-.top {
+header {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     background-color: #fffdd0;
     justify-content: center;
 }
@@ -11,18 +10,27 @@
     width: 300px;
 }
 
-.bottom {
+nav {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: #502b1b;
 }
 
 .menu {
     text-align: center;
+    padding-left: 2rem;
 }
 
-nav .dropdownn-menu {
+.usuario {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding-right: 3rem;
+}
+
+
+.dropdownn-menu {
     background-color: #502b1b;
     display: none;
     position: absolute;
@@ -34,10 +42,42 @@ nav .dropdownn-menu {
     margin-top: 1px;
     padding: 10px;
     z-index: 1;
+    box-shadow: 0 0 10px rgba(80, 43, 27, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        5px 0 15px rgba(0, 0, 0, 0.2),
+        -5px 0 15px rgba(0, 0, 0, 0.2),
+        0 -5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-out;
 
 }
 
+.dropdownn-user {
+    background-color: #502b1b;
+    display: none;
+    position: absolute;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+    margin: 1px 100px 0 0;
+    padding: 10px;
+    z-index: 1;
+    box-shadow: 0 0 10px rgba(80, 43, 27, 0.5),
+        0 5px 15px rgba(0, 0, 0, 0.2),
+        5px 0 15px rgba(0, 0, 0, 0.2),
+        -5px 0 15px rgba(0, 0, 0, 0.2),
+        0 -5px 15px rgba(0, 0, 0, 0.2);
+    
+}
+
 nav .dropdownn:hover .dropdownn-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}
+
+nav .dropdownn:hover .dropdownn-user {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -55,14 +95,16 @@ nav li {
     position: relative;
 }
 
-nav li>a {
+nav li>a,
+.usuario a {
     display: block;
     padding: 10px;
     text-decoration: none;
     color: #fffdd0;
 }
 
-nav li>a:hover {
+nav li>a:hover,
+.usuario a:hover {
     text-decoration: none;
     color: #c06138;
 }
@@ -70,13 +112,23 @@ nav li>a:hover {
 
 @media screen and (max-width: 600px) {
 
+    nav {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+    }
 
     .menu {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        align-content: center;
+        padding: 0;
+    }
+
+    .usuario {
+        padding: 0;
     }
 
     nav .dropdownn-menu {

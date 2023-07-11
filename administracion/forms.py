@@ -19,17 +19,29 @@ class UsuarioForm(forms.ModelForm):
         
         widgets = {
             'fec_nac': forms.DateInput(attrs={'type': 'date'}),
+            'password': forms.PasswordInput()
         }  # Incluir todos los campos del modelo
 
 class DireccionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['id_comuna'].choices = [("", "Primero Seleccione Región")]
+
     class Meta:
         model = Direccion
-        fields = ['direccion']
+        fields = ['id_comuna', 'direccion']
+
+        widgets = {
+            'id_comuna': forms.Select(attrs={'id': 'id_comuna'}),
+        }
+
+
         
 class RegionForm(forms.ModelForm):
     class Meta:
         model = Region
         fields = ['region']
+
 class ComunaForm(forms.ModelForm):
     class Meta:
         model = Comuna

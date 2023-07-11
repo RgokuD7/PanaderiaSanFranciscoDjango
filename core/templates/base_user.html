@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Panderia San Francisco </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/footer.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/04a1e28817.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="{% static 'core/img/logo_estrecho.jpg' %}" alt="LOGO">
+    </header>
+    <nav>
+        <ul class="menu">
+            <li><a href="{% url 'home' %}">Inicio</a></li>
+            <li class="dropdownn">
+                <a href="#">Productos</a>
+                <ul class="dropdownn-menu">
+                    {% for tipo in tipos_productos %}
+                    <li><a href="{% url 'tipos_productos' tipo.id_tipoProducto %}">{{ tipo.tipo_producto }}</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="{% url 'carrito' %}">Carrito</a></li>
+            <li><a href="{% url 'preguntas' %}">Preguntas Frecuentes</a></li>
+            <li><a href="{% url 'contacto' %}">Contacto</a></li>
+        </ul>
+        <div class="usuario">
+            {% if request.session.rut %}
+            {% csrf_token %}
+            <li class="dropdownn">
+                <a href="#">Usuario</a>
+                <ul class="dropdownn-user">
+                    <li><a href="">Cuenta</a></li>
+                    <li><a href="{% url 'logout_user' %}">Cerrar Sesíon</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <a href="{% url 'login_user' %}">Iniciar Sesión</a>
+            <a href="{% url 'registrar' %}">Registrar</a>
+            {% endif %}
+        </div>
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="pie">
+            <div class="left">
+                <p>&copy; 2023 Todos los derechos reservados</p>
+            </div>
+            <div class="right">
+                <ul>
+                    <div class="redes">
+                        {% csrf_token %}
+                        <li><i href="#"><a class="fab fa-facebook-f"></a></i></li>
+                        {% csrf_token %}
+                        <li><i href="#"><a class="fab fa-twitter"></a></i></li>
+                        {% csrf_token %}
+                        <li><i href="#"><a class="fab fa-instagram"></a></i></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

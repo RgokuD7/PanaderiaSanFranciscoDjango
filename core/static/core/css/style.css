@@ -43,10 +43,11 @@ body {
 
 
 
-.titulo {
+.titulos {
     text-align: center;
     color: #502b1b;
-    padding: 10px;
+    padding: 20px;
+    margin: 0;
 }
 
 .img-pres {
