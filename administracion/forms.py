@@ -18,7 +18,7 @@ class UsuarioForm(forms.ModelForm):
         fields = '__all__'
         
         widgets = {
-            'fec_nac': forms.DateInput(attrs={'type': 'date'}),
+            'fec_nac': forms.DateInput(attrs={'type': 'date', 'format': '%d/%m/%Y'}),
             'password': forms.PasswordInput()
         }  # Incluir todos los campos del modelo
 

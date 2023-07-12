@@ -4,6 +4,7 @@ from administracion.forms import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from datetime import datetime
 # Create your views here.
 
 def home(request):
@@ -24,6 +25,13 @@ def carrito(request):
 
 def contacto(request):
     return render(request, 'core/contacto.html')
+
+def info_usuario(request):
+    usuario_rut = request.session.get('rut')
+    usuario = Usuario.objects.get(rut=usuario_rut)
+    direccion = Direccion.objects.get(usuario = usuario)
+    return render(request, 'core/info_usuario.html', {'usuario': usuario, 'direccion': direccion})
+
 
 def preguntas(request):
     return render(request, 'core/preguntas.html')
@@ -53,6 +61,41 @@ def registro_usuario(request):
         'regiones': regiones,
     }
     return render(request, 'core/registrar.html', context)
+
+def editar_usuario(request):
+    usuario_rut = request.session.get('rut')
+    regiones = Region.objects.all() # Comunas vacías por defecto
+    usuario = get_object_or_404(Usuario, rut= usuario_rut)
+    direccion = get_object_or_404(Direccion, usuario = usuario.rut)
+    if request.method == 'POST':
+        usuario_form = UsuarioForm(request.POST, instance=usuario)
+        direccion_form = DireccionForm(request.POST,  instance=direccion)
+
+        if usuario_form.is_valid() and direccion_form.is_valid():
+            fecha_nacimiento = datetime.strptime(request.POST['fec_nac'], '%Y/%m/%d').strftime('%Y-%m-%d')
+            usuario_form.cleaned_data['fec_nac'] = fecha_nacimiento
+            usuario = usuario_form.save()
+            direccion = direccion_form.save(commit=False)
+            direccion.usuario = usuario
+            direccion.save()
+            return redirect('login_user')
+
+    else:
+        usuario_form = UsuarioForm(instance=usuario)
+        direccion_form = DireccionForm(instance=direccion)
+    usuario_form.fields['fec_nac'].widget.format = '%Y/%m/%d'
+    context = {
+        'usuario_form': usuario_form,
+        'direccion_form': direccion_form,
+        'regiones': regiones,
+        'direcciones': direccion
+    }
+    return render(request, 'core/editar_usuario.html', context)
+def eliminar_usuario(request):
+    usuario_rut = request.session.get('rut')
+    usuario = get_object_or_404(Usuario, rut= usuario_rut)
+    usuario.delete()
+    return redirect('login_user')
 
 def obtener_comunas(request):
     region_id = request.GET.get('region_id')

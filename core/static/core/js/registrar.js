@@ -1,5 +1,12 @@
+$(document).ready(function () {
+  var url = window.location.pathname
+  
+  if ( url === '/editar_usuario/'){
+    console.log(url);
+  }
+});
 function updateComunas() {
-  $('#selectRegion').prop("disabled", true);
+  $("#selectRegion").prop("disabled", true);
   var regionId = $("#id_region").val();
   $.ajax({
     url: "/obtener_comunas/",

@@ -3,15 +3,18 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'administracion/css/forms.css' %}">
-<h1 class="titulos">Registrarse</h1>
+<h1 class="titulos">Editar Información</h1>
 <form method="post">
   {% csrf_token %}
   {{ usuario_form }}
   <label for="region">Región:</label>
   <select id="id_region" name="region" onchange="updateComunas()">
-    <option id="selectRegion" value="">Seleccionar Región</option>
     {% for region in regiones %}
+    {% if region.id_region == direcciones.id_comuna.id_region.id_region %}
+    <option value="{{ region.id_region }}" selected>{{ region.region }}</option>
+    {% else %}
     <option value="{{ region.id_region }}">{{ region.region }}</option>
+    {% endif %}
     {% endfor %}
   </select>
   {{ direccion_form }}

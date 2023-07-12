@@ -1,0 +1,21 @@
+{% extends 'base_user.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'core/css/carrito.css' %}">
+<link rel="stylesheet" href="{% static 'core/css/productos.css' %}">
+<ul>
+    <li>RUT: {{ usuario.rut }} </li>
+    <li>Nombre: {{ usuario.nombre }} {{ usuario.apellidos }}</li>
+    <li>Fecha de nacimiento: {{ usuario.fec_nac }}</li>
+    <li>Telefono {{ usuario.telefono }}</li>
+    <li>Email: {{ usuario.mail }}</li>
+    <li>Password: *******</li>
+    <li>Dirección: {{ direccion.direccion }}</li>
+    <li>Region: {{ direccion.id_comuna.id_region }}</li>
+    <li>Comuna: {{ direccion.id_comuna }}</li>
+    <li><button class="btn-agregar " onclick="window.location.href='/editar_usuario'">Editar</butto>
+            <button class="btn-eliminar" onclick="window.location.href='/eliminar_usuario'">Eliminar</button>
+    </li>
+</ul>
+{% endblock %}
